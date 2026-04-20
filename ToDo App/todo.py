@@ -49,7 +49,7 @@ def save_tasks():
         temp_list.append(task_copy) # Adds this "JSON-friendly" version of the task to our temporary list.
     
     with open('tasks.json', 'w') as f: # open the file in the write mode 
-        json.dump(temp_list, f,)
+        json.dump(temp_list, f,) 
 
 
 def addTask() : 
