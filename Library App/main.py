@@ -24,22 +24,29 @@ def display_menu () :
 
 
 def add_book(): 
-    title = input("Enter book title: ")
-    author = input("Enter book author: ")
+    title = input("Enter book title: ").strip()
+    author = input("Enter book author: ").strip()
+
+    if not title or not author:
+        print("Error: Title and Author cannot be empty!")
+        return
+    
     new_book = Book(title, author)
     my_library.add_book(new_book)
     print(f"Successfully added '{title}' to the library!")
 
 
 def register_user() : 
-    name = input("Enter Your name : ")
-    new_user = User(name)
-    my_library.register_user(new_user)
+    name = input("Enter Your name : ").strip()
+    if not name:
+        print("Error: Name cannot be empty!")
+        return
+    my_library.register_user(User(name))
     print(f"User '{name}' has been registered successfully!")
 
 def borrow_book(): 
-    b_title = input("Enter book title you want to borrow : ")
-    u_name = input("Enter your username : ")
+    b_title = input("Enter book title you want to borrow : ").strip()
+    u_name = input("Enter your username : ").strip()
 
     #Convert strings to objects using your Library helpers
     target_user = my_library.find_user(u_name)
@@ -52,8 +59,8 @@ def borrow_book():
         print("Error: User or Book not found in system.")
 
 def return_book() : 
-    u_name = input("Enter your username: ")
-    b_title = input("Enter the book title you are returning: ")
+    u_name = input("Enter your username: ").strip()
+    b_title = input("Enter the book title you are returning: ").strip()
 
     target_user = my_library.find_user(u_name)
     target_book = my_library.find_book(b_title)
@@ -75,7 +82,7 @@ def display_everything():
 
 
 def search():
-    title = input("Enter the title you are looking for: ")
+    title = input("Enter the title you are looking for: ").strip()
     book = my_library.find_book(title)
     
     if book:
@@ -90,6 +97,7 @@ while (True) :
     choice = display_menu()
     match choice : 
         case 7 : 
+            print("Goodbye!")
             break 
         case 1 : 
             add_book() 
